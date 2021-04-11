@@ -28,7 +28,7 @@ function buildStories() {
             writeVariantHTML(template, modelsPath, variant, component)
           )
       ).then((variants) => {
-        writeStory(component, componentPath, variants);
+        writeStory(group, component, componentPath, variants);
       });
     })
   );
@@ -52,7 +52,7 @@ function writeVariantHTML(template, modelsPath, variant, component) {
   });
 }
 
-function writeStory(component, componentPath, variants) {
+function writeStory(group, component, componentPath, variants) {
   const cssPath = join(componentPath, `${component}.css`);
   let content = "";
   console.log(cssPath);
@@ -74,7 +74,9 @@ function writeStory(component, componentPath, variants) {
     content += `export const ${variantName} = () => ${importName};\n`;
     return content;
   }, "");
-  content += `export default { title: "${capitalize(component)}" };\n`;
+  content += `export default { title: "${capitalize(group)}/${capitalize(
+    component
+  )}" };\n`;
   writeFileSync(join(storiesPath, `${component}.stories.js`), content, {
     encoding: "utf-8",
   });
