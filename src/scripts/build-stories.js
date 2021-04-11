@@ -1,4 +1,4 @@
-const { readdirSync, mkdirSync, writeFileSync } = require("fs");
+const { readdirSync, mkdirSync, writeFileSync, existsSync } = require("fs");
 const { resolve, join, relative, parse } = require("path");
 const { renderFile } = require("twig");
 const hasha = require("hasha");
@@ -28,7 +28,7 @@ function buildStories() {
             writeVariantHTML(template, modelsPath, variant, component)
           )
       ).then((variants) => {
-        writeStory(component, variants);
+        writeStory(component, componentPath, variants);
       });
     })
   );
@@ -52,8 +52,18 @@ function writeVariantHTML(template, modelsPath, variant, component) {
   });
 }
 
-function writeStory(component, variants) {
-  let content = variants.reduce((content, variant) => {
+function writeStory(component, componentPath, variants) {
+  const cssPath = join(componentPath, `${component}.css`);
+  let content = "";
+  console.log(cssPath);
+  if (existsSync(cssPath)) {
+    console.log("exists");
+    content += `import "${relative(storiesPath, cssPath).replace(
+      /\\/g,
+      "/"
+    )}";\n`;
+  }
+  content += variants.reduce((content, variant) => {
     const importPath = relative(storiesPath, variant.file).replace(/\\/g, "/");
     const importName = parse(variant.file).name.substr(
       0,

@@ -1,0 +1,13 @@
+.headline {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 5px;
+  text-align: center;
+  margin: 0;
+}
+
+.headline.inverted {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 5px;
+  text-align: center;
+  color: #fff;
+}

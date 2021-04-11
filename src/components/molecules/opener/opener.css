@@ -1,0 +1,13 @@
+.opener {
+  max-width: 600px;
+  display: block;
+  padding: 15px;
+}
+
+.opener.inverted {
+  background-color: #121212;
+}
+
+.opener__headline {
+  margin-bottom: 25px;
+}

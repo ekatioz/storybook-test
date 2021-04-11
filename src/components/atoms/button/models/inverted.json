@@ -1,5 +1,5 @@
 {
-  "modifier": ["inverted"],
+  "modifiers": ["inverted"],
   "data": {
     "text": "Hallo"
   }

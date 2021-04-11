@@ -1,4 +1,5 @@
 {
+  "modifiers": ["inverted"],
   "data": {
     "headline": "Hier gehts los!",
     "button": "Klick hier!"

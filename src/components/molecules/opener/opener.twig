@@ -1,3 +1,16 @@
-<opener>
-
+<opener class="opener {% if 'inverted' in modifiers %} inverted {% endif %}">
+    <div class="opener__headline">
+    {% include '../../atoms/headline/headline.twig' with {
+        modifiers: modifiers,
+        data: {
+            text: data.headline
+        }
+    } %}
+    </div>
+    {% include '../../atoms/button/button.twig' with {
+        modifiers: modifiers,
+        data: {
+            text: data.button
+        }
+    } %}
 </opener>
